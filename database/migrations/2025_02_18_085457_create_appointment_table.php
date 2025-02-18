@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('appointment', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
-            $table->unsignedBigInteger('patient_id');
+            $table->unsignedBigInteger('user_id');
             $table->date('date');
             $table->datetime('hour');
             $table->string('consultation_type');
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->timestamps();
 
             // Foreign Key Constraint
-            $table->foreign('patient_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

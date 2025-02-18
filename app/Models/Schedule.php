@@ -9,10 +9,9 @@ class Schedule extends Model
         protected $table = 'schedules';
         protected $fillable = [
             'id',
-            'user_id',
             'day_of_week',
-            'start_time',
-            'end_time',
+            'date_time',
+            'user_id'
         ];
 
     public function getFillable(): array
