@@ -1,0 +1,81 @@
+/* admin_appointment.css */
+
+/* Form container */
+form {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 900px; /* Ajuste la largeur selon tes besoins */
+    margin: 0 auto;
+}
+
+/* Alignement des éléments dans le formulaire */
+label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+    display: inline-block;
+    width: 100%; /* Chaque label occupe toute la largeur */
+}
+
+select, input[type="time"] {
+    width: 30%; /* Champs prennent 30% de la largeur */
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%; /* Le bouton occupe toute la largeur */
+    margin-top: 10px; /* Marge supplémentaire */
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Validation error */
+input:invalid, select:invalid {
+    border-color: #e74c3c;
+}
+
+input:invalid:focus, select:invalid:focus {
+    outline: none;
+    border-color: #e74c3c;
+}
+
+/* Pour s'assurer que les éléments s'affichent en ligne */
+input[type="time"], select {
+    margin-right: 10px; /* Espacement entre les éléments */
+}
+
+@media (max-width: 768px) {
+    /* Pour petits écrans : on empile les éléments */
+    form {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    select, input[type="time"], button {
+        width: 100%; /* Champs et bouton prennent toute la largeur sur petits écrans */
+    }
+
+    button {
+        margin-top: 20px;
+    }
+}
