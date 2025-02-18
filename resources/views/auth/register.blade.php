@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('custom_css')
+    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+@endsection
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -16,7 +19,11 @@
                             <label for="role" class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
 
                             <div class="col-md-6">
-                                <input id="role" type="text" class="form-control @error('role') is-invalid @enderror" name="role" value="{{ old('role') }}" required autocomplete="name" autofocus>
+
+                                <select id="role" name="role" required>
+                                    <option value="Medecin">Medecin</option>
+                                    <option value="Client">Client</option>
+                                </select>
 
                                 @error('role')
                                 <span class="invalid-feedback" role="alert">

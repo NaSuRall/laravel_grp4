@@ -8,6 +8,7 @@
                 <a href="{{ url('home')  }}">Accueil</a>
                 <a href=""><span>Rendez-vous</span></a>
                 <a href="">Mes Rendez-vous</a>
+                <a href="{{ route('myAcount') }}">{{ auth()->user()->name}}</a>
         </div>
     </div>
 
