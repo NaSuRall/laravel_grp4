@@ -1,0 +1,46 @@
+:root{
+    --main-color-h1: #04BBFF;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.nav h1{
+    color: var(--main-color-h1);
+    font-family: "Noto Sans Carian", sans-serif;
+    font-size: 2.3em;
+}
+span{
+    color: var(--main-color-h1);
+}
+.container{
+    display: flex;
+    align-items: center;
+
+}
+.nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px;
+    background-color: #e8e8e8;
+}
+.linka a{
+    font-size: 1.4em;
+    font-family: "Noto Sans Carian", sans-serif;
+    text-decoration: none;
+    color: black;
+    margin-left: 20px;
+    transition: 1s all ease;
+}
+.linka a:hover{
+    border-bottom: 1px solid var(--main-color-h1);
+    color: var(--main-color-h1);
+}
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

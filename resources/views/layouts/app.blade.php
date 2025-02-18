@@ -12,10 +12,9 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    @yield('custom_css')
 
     <!-- Scripts -->
-    <link rel="styleshgit merge eet" href="{{ mix('css/app.css') }}">
+    @yield('custom_css')
     <script src="{{ mix('js/app.js') }}"></script>
 </head>
 <body>
