@@ -14,7 +14,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    @yield('custom_css')
     <script src="{{ mix('js/app.js') }}"></script>
 </head>
 <body>
