@@ -7,5 +7,8 @@
 @section('content')
 
 @include('elements.nav')
+    <h1>Bonjour :{{ auth()->user()->name }} </h1>
+
+
 
 @endsection
