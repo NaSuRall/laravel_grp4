@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Appointment extends Model
 {
     //
-    protected $table = 'appointments';
+    protected $table = 'appointment';
     protected $fillable = [
         'id',
         'user_id',
@@ -21,12 +21,10 @@ class Appointment extends Model
     {
         return $this->table;
     }
-
     public function getFillable(): array
     {
         return $this->fillable;
     }
-
     public function setFillable(array $fillable): void
     {
         $this->fillable = $fillable;

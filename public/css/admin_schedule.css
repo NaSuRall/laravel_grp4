@@ -1,0 +1,55 @@
+@import "annimation.css";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial,sans-serif;
+}
+
+
+.formulaire {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20vh;
+}
+
+form{
+    display: flex;
+    padding: 10px;
+    justify-content: space-around;
+    width: 70%;
+    border-radius: 10px;
+
+    background: linear-gradient(90deg, #ffffff, #1980ff, #e3ecff);
+    background-size: 300% 300%;
+    animation: movingGradient 10s infinite alternate ease-in-out;
+    backdrop-filter: blur(10px);
+}
+form label{
+    font-size: 1.3em;
+    padding: 10px;
+}
+
+form input, select{
+    padding: 10px;
+    border: none;
+    outline: none;
+    width: 150px;
+    border-radius: 10px;
+}
+form select{
+    background-color: white;
+}
+
+form button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border: none;
+    padding: 10px 40px;
+    border-radius:10px;
+    height: 100%;
+}
