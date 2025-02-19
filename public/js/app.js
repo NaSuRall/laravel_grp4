@@ -17657,55 +17657,84 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Check if schedules data is defined and valid
   if (typeof schedules === 'undefined' || !Array.isArray(schedules)) {
     console.error('Schedules data is not properly loaded');
     return;
   }
   (0,flatpickr__WEBPACK_IMPORTED_MODULE_1__["default"])("#datepicker", {
     enableTime: true,
-    inline: true,
     minDate: "today",
     time_24hr: true,
     dateFormat: "Y-m-d H:i",
     minuteIncrement: 60,
-    enable: [function (date) {
-      // Get the full weekday name (e.g., Monday, Tuesday)
+    disable: [function (date) {
       var dayOfWeek = date.toLocaleDateString('en-US', {
         weekday: 'long'
       });
-
-      // Filter schedules for the current day
-      var daySchedules = schedules.filter(function (s) {
+      return !schedules.find(function (s) {
         return s.day_of_week === dayOfWeek;
       });
-
-      // If no schedule is available on this day, disable the day entirely
-      if (daySchedules.length === 0) return false;
-
-      // Convert selected time to minutes since midnight
-      var timeInMinutes = date.getHours() * 60 + date.getMinutes();
-
-      // Check if the selected time falls within any valid schedule
-      return daySchedules.some(function (schedule) {
-        var _schedule$start_time$ = schedule.start_time.split(':').map(Number),
-          _schedule$start_time$2 = _slicedToArray(_schedule$start_time$, 2),
-          startH = _schedule$start_time$2[0],
-          startM = _schedule$start_time$2[1];
-        var _schedule$end_time$sp = schedule.end_time.split(':').map(Number),
-          _schedule$end_time$sp2 = _slicedToArray(_schedule$end_time$sp, 2),
-          endH = _schedule$end_time$sp2[0],
-          endM = _schedule$end_time$sp2[1];
-        var start = startH * 60 + (startM || 0);
-        var end = endH * 60 + (endM || 0);
-
-        // Log debug information
-        console.log("Checking ".concat(dayOfWeek, " ").concat(date.getHours(), ":").concat(date.getMinutes(), " against schedule ").concat(startH, ":").concat(startM, "-").concat(endH, ":").concat(endM));
-        return timeInMinutes >= start && timeInMinutes <= end;
-      });
     }],
-    onChange: function onChange(selectedDates, dateStr) {
-      console.log("Selected date/time:", dateStr);
+    onReady: function onReady(selectedDates, dateStr, instance) {
+      var date = selectedDates[0] || instance.currentDateObj;
+      var dayOfWeek = date.toLocaleDateString('en-US', {
+        weekday: 'long'
+      });
+      var daySchedule = schedules.find(function (s) {
+        return s.day_of_week === dayOfWeek;
+      });
+      if (daySchedule) {
+        var _daySchedule$end_time = daySchedule.end_time.split(':').map(Number),
+          _daySchedule$end_time2 = _slicedToArray(_daySchedule$end_time, 2),
+          endHour = _daySchedule$end_time2[0],
+          endMinute = _daySchedule$end_time2[1];
+        var adjustedEndHour = endHour - 1;
+        if (adjustedEndHour < 0) adjustedEndHour = 0;
+        var newEndTime = "".concat(adjustedEndHour, ":").concat(endMinute.toString().padStart(2, '0'));
+        instance.set('minTime', daySchedule.start_time);
+        instance.set('maxTime', newEndTime);
+        var _daySchedule$start_ti = daySchedule.start_time.split(':').map(Number),
+          _daySchedule$start_ti2 = _slicedToArray(_daySchedule$start_ti, 2),
+          startHour = _daySchedule$start_ti2[0],
+          startMinute = _daySchedule$start_ti2[1];
+        if (date.getHours() < startHour) {
+          date.setHours(startHour, startMinute);
+          instance.setDate(date, false);
+        }
+      }
+    },
+    onChange: function onChange(selectedDates, dateStr, instance) {
+      if (selectedDates.length) {
+        var date = selectedDates[0];
+        var dayOfWeek = date.toLocaleDateString('en-US', {
+          weekday: 'long'
+        });
+        var daySchedule = schedules.find(function (s) {
+          return s.day_of_week === dayOfWeek;
+        });
+        if (daySchedule) {
+          var _daySchedule$end_time3 = daySchedule.end_time.split(':').map(Number),
+            _daySchedule$end_time4 = _slicedToArray(_daySchedule$end_time3, 2),
+            endHour = _daySchedule$end_time4[0],
+            endMinute = _daySchedule$end_time4[1];
+          var adjustedEndHour = endHour - 1;
+          if (adjustedEndHour < 0) adjustedEndHour = 0;
+          var newEndTime = "".concat(adjustedEndHour, ":").concat(endMinute.toString().padStart(2, '0'));
+          instance.set('minTime', daySchedule.start_time);
+          instance.set('maxTime', newEndTime);
+          var _daySchedule$start_ti3 = daySchedule.start_time.split(':').map(Number),
+            _daySchedule$start_ti4 = _slicedToArray(_daySchedule$start_ti3, 2),
+            startHour = _daySchedule$start_ti4[0],
+            startMinute = _daySchedule$start_ti4[1];
+          var currentTime = date.getHours() * 60 + date.getMinutes();
+          var scheduleStart = startHour * 60 + startMinute;
+          var scheduleEnd = adjustedEndHour * 60 + endMinute;
+          if (currentTime < scheduleStart || currentTime > scheduleEnd) {
+            date.setHours(startHour, startMinute);
+            instance.setDate(date, true);
+          }
+        }
+      }
     }
   });
 });
