@@ -63,7 +63,7 @@
 
                 @foreach($daysOfWeek as $key => $day)
                     @php
-                    $entry = $plan->where('day_of_week', $key)->first();
+                    $entry = $plan->where('day_of_week', $key)->last();
                     @endphp
                     <tr>
                         <td>{{ $day }}</td>

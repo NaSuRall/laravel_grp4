@@ -15,9 +15,6 @@
     font-family: "Noto Sans Carian", sans-serif;
     font-size: 2.3em;
 }
-span{
-    color: var(--main-color-h1);
-}
 .container{
     display: flex;
     align-items: center;
@@ -40,6 +37,10 @@ span{
     color: black;
     margin-left: 20px;
     transition: 1s all ease;
+}
+.linka a.active{
+    border-bottom: 1px solid var(--main-color-h1);
+    color: var(--main-color-h1);
 }
 .linka a:hover{
     border-bottom: 1px solid var(--main-color-h1);
