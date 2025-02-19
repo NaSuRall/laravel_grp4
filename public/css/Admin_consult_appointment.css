@@ -1,3 +1,111 @@
-h1{
-    background-color: red;
+/* Conteneur principal */
+.container_custom {
+    width: 90%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    background: rgb(9,9,121);
+    background: linear-gradient(90deg, rgba(9,9,121,1) 0%, rgba(53,144,228,1) 51%, rgba(9,9,121,1) 100%);
+}
+
+/* Centrage du titre */
+h111.center {
+    display: block;
+    text-align: center;
+    font-size: 30px;
+    color: black;
+    font-family: 'RocknRoll One', sans-serif;
+    font-weight: bold;
+    padding: 30px 0;
+    margin-bottom: 5px;
+}
+
+/* Table */
+.custom_table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 5px;
+}
+
+/* En-tête et cellules */
+.custom_table th, .custom_table td {
+    padding: 12px;
+    font-weight: bold;
+    color: black;
+    font-size: large;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Style de l'en-tête
+.custom_table th {
+    background-color: rgb(108, 99, 255);#f4f4f4;
+}*/
+
+.info {
+    border-radius: 8px;
+    background: rgb(35,116,191);
+    background: linear-gradient(90deg, rgba(35,116,191,1) 0%, rgba(35,116,191,1) 100%);
+}
+
+/* Alignement des 4 premières colonnes à gauche */
+.custom_table th:not(.actions-column), .custom_table td:not(.actions-column) {
+    text-align: left;
+}
+
+/* Liens */
+.custom_table a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.custom_table a:hover {
+    text-decoration: underline;
+}
+
+/* Boutons */
+.btn {
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Modifier */
+.btn-warning {
+    background-color: #ffc107;
+    color: #fff;
+    border: none;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+}
+
+/* Supprimer */
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Alignement spécifique pour la colonne des actions */
+.actions-column {
+    text-align: right;
+    width: 200px; /* Ajuste la largeur de la colonne des actions */
+}
+
+/* Alignement des boutons dans la colonne des actions */
+.actions {
+    text-align: right;
+}
+
+.actions .btn {
+    margin-left: 5px;
 }
