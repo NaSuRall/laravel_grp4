@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Schedule;
 
 class Appointment extends Model
 {
     //
     protected $table = 'appointment';
     protected $fillable = [
-        'user_id',
         'date',
         'hour',
         'consultation_type',
@@ -29,5 +29,10 @@ class Appointment extends Model
         $this->fillable = $fillable;
     }
 
+    public function appointment()
+    {
+        $schedules = Schedule::all();
+        return view('appointment', compact('schedules'));
+    }
 
 }

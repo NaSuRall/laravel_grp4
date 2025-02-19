@@ -17647,17 +17647,66 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bootstrap_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bootstrap.js */ "./resources/js/bootstrap.js");
 /* harmony import */ var flatpickr__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flatpickr */ "./node_modules/flatpickr/dist/esm/index.js");
 /* harmony import */ var flatpickr_dist_themes_material_blue_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flatpickr/dist/themes/material_blue.css */ "./node_modules/flatpickr/dist/themes/material_blue.css");
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
 document.addEventListener("DOMContentLoaded", function () {
+  // Check if schedules data is defined and valid
+  if (typeof schedules === 'undefined' || !Array.isArray(schedules)) {
+    console.error('Schedules data is not properly loaded');
+    return;
+  }
   (0,flatpickr__WEBPACK_IMPORTED_MODULE_1__["default"])("#datepicker", {
     enableTime: true,
     inline: true,
     minDate: "today",
     time_24hr: true,
-    dateFormat: "Y-m-d H:00",
-    minuteIncrement: 60
+    dateFormat: "Y-m-d H:i",
+    minuteIncrement: 60,
+    enable: [function (date) {
+      // Get the full weekday name (e.g., Monday, Tuesday)
+      var dayOfWeek = date.toLocaleDateString('en-US', {
+        weekday: 'long'
+      });
+
+      // Filter schedules for the current day
+      var daySchedules = schedules.filter(function (s) {
+        return s.day_of_week === dayOfWeek;
+      });
+
+      // If no schedule is available on this day, disable the day entirely
+      if (daySchedules.length === 0) return false;
+
+      // Convert selected time to minutes since midnight
+      var timeInMinutes = date.getHours() * 60 + date.getMinutes();
+
+      // Check if the selected time falls within any valid schedule
+      return daySchedules.some(function (schedule) {
+        var _schedule$start_time$ = schedule.start_time.split(':').map(Number),
+          _schedule$start_time$2 = _slicedToArray(_schedule$start_time$, 2),
+          startH = _schedule$start_time$2[0],
+          startM = _schedule$start_time$2[1];
+        var _schedule$end_time$sp = schedule.end_time.split(':').map(Number),
+          _schedule$end_time$sp2 = _slicedToArray(_schedule$end_time$sp, 2),
+          endH = _schedule$end_time$sp2[0],
+          endM = _schedule$end_time$sp2[1];
+        var start = startH * 60 + (startM || 0);
+        var end = endH * 60 + (endM || 0);
+
+        // Log debug information
+        console.log("Checking ".concat(dayOfWeek, " ").concat(date.getHours(), ":").concat(date.getMinutes(), " against schedule ").concat(startH, ":").concat(startM, "-").concat(endH, ":").concat(endM));
+        return timeInMinutes >= start && timeInMinutes <= end;
+      });
+    }],
+    onChange: function onChange(selectedDates, dateStr) {
+      console.log("Selected date/time:", dateStr);
+    }
   });
 });
 
