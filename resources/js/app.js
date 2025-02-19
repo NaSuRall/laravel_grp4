@@ -3,8 +3,8 @@ import flatpickr from "flatpickr";
 import "flatpickr/dist/themes/material_blue.css";
 document.addEventListener("DOMContentLoaded", () => {
     flatpickr("#datepicker", {
-        dateFormat: "Y-m-d",
-        altInput: true,
-        altFormat: "F j, Y"
+        enableTime: true,
+        time_24hr: true,
+        dateFormat: "Y-m-d H:i",
     });
 });

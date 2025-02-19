@@ -17652,9 +17652,9 @@ __webpack_require__.r(__webpack_exports__);
 
 document.addEventListener("DOMContentLoaded", function () {
   (0,flatpickr__WEBPACK_IMPORTED_MODULE_1__["default"])("#datepicker", {
-    dateFormat: "Y-m-d",
-    altInput: true,
-    altFormat: "F j, Y"
+    enableTime: true,
+    time_24hr: true,
+    dateFormat: "Y-m-d H:i"
   });
 });
 
