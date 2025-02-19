@@ -1,3 +1,5 @@
+@import 'annimation.css';
+
 /* Reset global */
 * {
     box-sizing: border-box;
@@ -5,11 +7,12 @@
     padding: 0;
 }
 
-.BG{
-    background: rgb(0,212,255);
-    background: linear-gradient(184deg, rgba(0,212,255,1) 27%, rgba(255,255,255,1) 100%);
+body{
+    background: linear-gradient(90deg, #a0c1ff, rgb(108, 99, 255), #a0c1ff);
+    background-size: 300% 300%;
+    animation: movingGradient 10s infinite alternate ease-in-out;
+    backdrop-filter: blur(10px);
 }
-
 /* Typography */
 h1 {
     font-size: 36px;
@@ -35,6 +38,7 @@ h3 {
     float: left;
     padding: 60px;
     height: 100%;
+    background-color: white;
 }
 
 .row {
@@ -42,18 +46,19 @@ h3 {
     align-items: center;
     justify-content: center;
     height: 90vh;
+    margin: 0px 0px 80px 0px;
 }
 
 /* Left & Right Sections */
 .left {
     width: 50%;
     color: #000000;
-    border: 1px solid #000000;
+
 }
 
 .right {
     width: 50%;
-    border: 1px solid #000000;
+
 }
 
 .text p {
@@ -77,7 +82,7 @@ p {
     align-items: center;
     justify-content: center;
     width: 50%;
-    border: 1px solid #000000;
+
 }
 
 .MedecinD {
@@ -87,7 +92,7 @@ p {
     flex-direction: column;
     width: 50%;
     color: #000000;
-    border: 1px solid #000000;
+
 }
 
 /* Contact Section */
@@ -95,9 +100,18 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 70vh;
+    height: 100%;
+    padding: 50px;
+    margin: 50px;
+    background: white;
+    width: 50%;
+    border-radius: 10px;
 }
-
+.centre{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .right img {
     margin-top: 60px;
     display: flex;
@@ -167,6 +181,7 @@ p {
     margin-top: 5px;
     border: 1px solid #000000;
     border-radius: 5px;
+    resize: none;
 }
 
 .contact-form button {
