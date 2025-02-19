@@ -1,0 +1,97 @@
+@import 'colors.css';
+
+/* Ajout de styles pour le formulaire */
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 30px;
+    background-color: var(--blanc);
+}
+
+.card-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 20px 15px;
+    text-align: center;
+}
+
+.card-body {
+    padding: 30px;
+}
+
+.row.mb-3 {
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+input[type="text"], input[type="email"], input[type="password"], select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-top: 8px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, select:focus {
+    border-color: #0056b3;
+    outline: none;
+}
+
+.invalid-feedback {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 5px;
+}
+
+button {
+    background-color: var(--bleu);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.btn-primary {
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: #218838;
+}
+
+.card-body .row.mb-0 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.card-body .row.mb-0 .btn {
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto;
+}

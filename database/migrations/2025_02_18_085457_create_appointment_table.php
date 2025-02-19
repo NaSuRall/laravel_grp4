@@ -16,8 +16,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->date('date');
-            $table->datetime('hour');
-            $table->string('consultation_type');
+            $table->string('hour');
+            $table->string('consultation_type')->nullable();
             $table->text('description');
             $table->timestamps();
 
