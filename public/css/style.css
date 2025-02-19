@@ -1,0 +1,203 @@
+@import 'annimation.css';
+@import 'colors.css';
+
+/* Reset global */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background: linear-gradient(90deg, var(--ciel), var(--violet), var(--ciel));
+    background-size: 300% 300%;
+    animation: movingGradient 10s infinite alternate ease-in-out;
+    backdrop-filter: blur(10px);
+}
+/* Typography */
+h1 {
+    font-size: 36px;
+}
+
+h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    margin-top: 50px;
+}
+
+h3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+}
+
+/* Layout */
+.column {
+    float: left;
+    padding: 60px;
+    height: 100%;
+    background-color: var(--blanc);
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    margin: 0px 0px 80px 0px;
+}
+
+/* Left & Right Sections */
+.left {
+    width: 50%;
+    color: var(--noir);
+
+}
+
+.right {
+    width: 50%;
+
+}
+
+.text p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 22px;
+    margin-top: 50px;
+}
+
+p {
+    height: 100%;
+    font-size: 22px;
+    margin-top: 50px;
+}
+
+/* Medecin Sections */
+.MedecinG {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+
+}
+
+.MedecinD {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+    color: var(--noir);
+
+}
+
+/* Contact Section */
+.contact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 50px;
+    margin: 50px;
+    background: var(--blanc);
+    width: 50%;
+    border-radius: 10px;
+}
+.centre{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.right img {
+    margin-top: 60px;
+    display: flex;
+    width: 100%;
+}
+
+.left img {
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.MedecinD button {
+    width: 80%;
+    padding: 10px;
+    background-color: var(--bleu);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.MedecinD button:hover {
+    background-color: var(--bleuSombreHover);
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Contact Form */
+.contact-container {
+    display: flex;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 600px;
+    gap: 20px;
+}
+
+.contact-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contact-form label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+
+.contact-form input, .contact-form textarea {
+    width: 600px;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid var(--bordure);
+    border-radius: 5px;
+    resize: none;
+}
+
+.contact-form button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    background-color: var(--bleu);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.contact-form button:hover {
+    background-color: var(--bleuSombreHover);
+}

@@ -21,12 +21,10 @@ class Appointment extends Model
     {
         return $this->table;
     }
-
     public function getFillable(): array
     {
         return $this->fillable;
     }
-
     public function setFillable(array $fillable): void
     {
         $this->fillable = $fillable;
