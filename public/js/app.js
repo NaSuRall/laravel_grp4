@@ -17654,8 +17654,6 @@ document.addEventListener("DOMContentLoaded", function () {
   (0,flatpickr__WEBPACK_IMPORTED_MODULE_1__["default"])("#datepicker", {
     enableTime: true,
     inline: true,
-    minTime: "*:00",
-    maxTime: "*:01",
     minDate: "today",
     time_24hr: true,
     dateFormat: "Y-m-d H:00",
