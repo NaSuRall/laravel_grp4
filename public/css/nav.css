@@ -1,3 +1,5 @@
+@import 'colors.css';
+
 :root{
     --main-color-h1: #FFFFFF;
 }
@@ -26,7 +28,7 @@ span{
     align-items: center;
     justify-content: space-around;
     padding: 20px;
-    background-color: rgb(108, 99, 255);
+    background-color: var(--violet);
     position: static;
 
 

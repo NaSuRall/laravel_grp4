@@ -1,4 +1,5 @@
 @import 'annimation.css';
+@import 'colors.css';
 
 /* Reset global */
 * {
@@ -8,7 +9,7 @@
 }
 
 body{
-    background: linear-gradient(90deg, #a0c1ff, rgb(108, 99, 255), #a0c1ff);
+    background: linear-gradient(90deg, var(--ciel), var(--violet), var(--ciel));
     background-size: 300% 300%;
     animation: movingGradient 10s infinite alternate ease-in-out;
     backdrop-filter: blur(10px);
@@ -38,7 +39,7 @@ h3 {
     float: left;
     padding: 60px;
     height: 100%;
-    background-color: white;
+    background-color: var(--blanc);
 }
 
 .row {
@@ -52,7 +53,7 @@ h3 {
 /* Left & Right Sections */
 .left {
     width: 50%;
-    color: #000000;
+    color: var(--noir);
 
 }
 
@@ -91,7 +92,7 @@ p {
     justify-content: center;
     flex-direction: column;
     width: 50%;
-    color: #000000;
+    color: var(--noir);
 
 }
 
@@ -103,7 +104,7 @@ p {
     height: 100%;
     padding: 50px;
     margin: 50px;
-    background: white;
+    background: var(--blanc);
     width: 50%;
     border-radius: 10px;
 }
@@ -129,7 +130,7 @@ p {
 .MedecinD button {
     width: 80%;
     padding: 10px;
-    background-color: #1d75ed;
+    background-color: var(--bleu);
     color: white;
     border: none;
     border-radius: 5px;
@@ -139,7 +140,7 @@ p {
 }
 
 .MedecinD button:hover {
-    background-color: #1555ac;
+    background-color: var(--bleuSombreHover);
 }
 
 .row:after {
@@ -179,7 +180,7 @@ p {
     width: 600px;
     padding: 10px;
     margin-top: 5px;
-    border: 1px solid #000000;
+    border: 1px solid var(--bordure);
     border-radius: 5px;
     resize: none;
 }
@@ -188,7 +189,7 @@ p {
     width: 100%;
     padding: 10px;
     margin-top: 15px;
-    background-color: #1d75ed;
+    background-color: var(--bleu);
     color: white;
     border: none;
     border-radius: 5px;
@@ -198,5 +199,5 @@ p {
 }
 
 .contact-form button:hover {
-    background-color: #1555ac;
+    background-color: var(--bleuSombreHover);
 }
