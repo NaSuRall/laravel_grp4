@@ -16,6 +16,28 @@ class Schedule extends Model
 
 
 
+    public function getTimeSlots(): array
+    {
+        if (!$this->start_time || !$this->end_time) {
+            return [];
+        }
+
+        $start = strtotime($this->start_time);
+        $end = strtotime($this->end_time);
+        $slots = [];
+
+        while ($start < $end) {
+            $nextSlot = $start + 3600;
+            if ($nextSlot <= $end) {
+                $slots[] = date('H:i', $start) . ' - ' . date('H:i', $nextSlot);
+            }
+            $start = $nextSlot;
+        }
+        return $slots;
+    }
+
+
+
 
 
     public function getFillable(): array
