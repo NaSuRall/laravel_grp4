@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Appointment extends Model
 {
     //
-    protected $table = 'appointments';
+    protected $table = 'appointment';
     protected $fillable = [
         'id',
         'user_id',
@@ -17,7 +17,7 @@ class Appointment extends Model
         'description'
     ];
 
-    public function getTable(): string
+   public function getTable(): string
     {
         return $this->table;
     }
@@ -31,6 +31,4 @@ class Appointment extends Model
     {
         $this->fillable = $fillable;
     }
-
-
 }
