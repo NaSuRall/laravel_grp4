@@ -12,6 +12,7 @@ Route::get('/Admin', [App\Http\Controllers\Admin_consult_appointment_controller:
 Route::get('/Admin/schedule', [App\Http\Controllers\Admin_schedule_controller::class, 'admin_schedule'])->name('admin.schedule');
 Route::post('/Admin/appointment/formSub', [App\Http\Controllers\Admin_schedule_controller::class, 'send_form_admin'])->name('send_form_admin');
 Route::get('/myAccount', [App\Http\Controllers\myAccount_controller::class, 'index'])->name('myAcount');
+Route::get('/rendezvous', function () {return view('appointment');})->name('rendezvous');
 
 Route::get('/logout', function () {
     Auth::logout(); // Déconnexion de l'utilisateur
