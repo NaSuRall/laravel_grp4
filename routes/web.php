@@ -14,6 +14,9 @@ Route::post('/Admin/appointment/formSub', [App\Http\Controllers\Admin_schedule_c
 Route::get('/myAccount', [App\Http\Controllers\myAccount_controller::class, 'index'])->name('myAcount');
 Route::get('/rendezvous', function () {return view('appointment');})->name('rendezvous');
 
+
+
+
 Route::get('/logout', function () {
     Auth::logout(); // Déconnexion de l'utilisateur
     return redirect('/home'); // Rediriger vers la page d'accueil (ou une autre page)
