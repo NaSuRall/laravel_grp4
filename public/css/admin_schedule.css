@@ -22,7 +22,7 @@ form{
     width: 70%;
     border-radius: 10px;
 
-    background: linear-gradient(90deg, #ffffff, rgb(108, 99, 255)   , #e3ecff);
+    background: linear-gradient(90deg, var(--ciel), var(--violet), var(--ciel));
     background-size: 300% 300%;
     animation: movingGradient 10s infinite alternate ease-in-out;
     backdrop-filter: blur(10px);

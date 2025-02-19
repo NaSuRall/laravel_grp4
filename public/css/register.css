@@ -1,3 +1,5 @@
+@import 'colors.css';
+
 /* Ajout de styles pour le formulaire */
 .container {
     max-width: 900px;
@@ -10,7 +12,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     padding: 30px;
-    background-color: #fff;
+    background-color: var(--blanc);
 }
 
 .card-header {
@@ -59,7 +61,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 }
 
 button {
-    background-color: #007bff;
+    background-color: var(--bleu);
     color: white;
     border: none;
     padding: 10px 20px;

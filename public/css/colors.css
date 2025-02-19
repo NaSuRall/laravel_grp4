@@ -1,0 +1,11 @@
+:root {
+    --noir: #000000;
+    --blanc: #ffffff;
+
+    --ciel: #a0c1ff;
+    --violet: rgb(108, 99, 255);
+    --bleu: #1d75ed;
+    --bleuSombreHover: #1555ac;
+
+    --bordure: #000000;
+}

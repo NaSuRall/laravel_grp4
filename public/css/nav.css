@@ -1,5 +1,7 @@
+@import 'colors.css';
+
 :root{
-    --main-color-h1: #04BBFF;
+    --main-color-h1: #FFFFFF;
 }
 
 *{
@@ -7,6 +9,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 .nav h1{
     color: var(--main-color-h1);
     font-family: "Noto Sans Carian", sans-serif;
@@ -22,7 +25,10 @@
     align-items: center;
     justify-content: space-around;
     padding: 20px;
-    background-color: #e8e8e8;
+    background-color: var(--violet);
+    position: static;
+
+
 }
 .linka a{
     font-size: 1.4em;
