@@ -36,4 +36,46 @@
         </form>
     </div>
 
+
+
+
+    <div class="plaging">
+
+        <div class="titre">
+            <h1>Voici votre planing :</h1>
+        </div>
+
+
+        <div class="plan">
+            <table>
+                <thead>
+                <tr>
+                    <th>Jour</th>
+                    <th>Heure de début</th>
+                    <th>Heure de fin</th>
+                    <th>Nb Crénaux</th>
+                </tr>
+                </thead>
+                <tbody>
+                @php
+                    $daysOfWeek = ['Monday' => 'Lundi', 'Tuesday' => 'Mardi', 'Wednesday' => 'Mercredi', 'Thursday' => 'Jeudi', 'Friday' => 'Vendredi', 'Saturday' => 'Samedi', 'Sunday' => 'Dimanche'];
+                @endphp
+
+                @foreach($daysOfWeek as $key => $day)
+                    @php
+                    $entry = $plan->where('day_of_week', $key)->first();
+                    @endphp
+                    <tr>
+                        <td>{{ $day }}</td>
+                        <td>{{ $entry ? $entry->start_time : '—' }}</td>
+                        <td>{{ $entry ? $entry->end_time : '—' }}</td>
+                        <td> — </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
 @endsection

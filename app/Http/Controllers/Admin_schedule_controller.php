@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Auth;
 class Admin_schedule_controller extends Controller
 {
     public function admin_schedule(){
-        return view('admin_schedule');
+        $plan = Schedule::where('user_id', auth()->id())->get();
+
+        return view('admin_schedule', compact('plan'));
     }
 
     public function send_form_admin(Request $request)
@@ -25,14 +27,13 @@ class Admin_schedule_controller extends Controller
         // Vérification des données reçues
 
         // Création du créneau
-        Schedule::create([
+       $planing = Schedule::create([
             'user_id' => auth()->id(),
             'day_of_week' => $request->input('day_of_week'),
             'start_time' => $request->input('start_time'),
             'end_time' => $request->input('end_time'),
         ]);
 
-        return redirect()->route('home')->with('success', 'Créneau ajouté avec succès.');
+        return redirect()->route('admin.schedule', $planing)->with('success', 'Créneau ajouté avec succès.');
     }
-
 }
