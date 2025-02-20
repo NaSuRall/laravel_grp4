@@ -16,8 +16,8 @@ class EmailController extends Controller
           'message' => 'Ceci est un e-mail envoyé via Laravel et Gmail SMTP.'
        ];
 
-      Mail::to('testlucasmarrant@gmail.com')->send(new MonEmail($details));
+      Mail::to('doctohrlibe@romain-poulain.fr')->send(new MonEmail($details));
 
-       return view('send.email');
+       return view('mail', compact('details'));
     }
 }
