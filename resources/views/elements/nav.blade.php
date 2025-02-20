@@ -2,6 +2,7 @@
 
     <div class="nav">
         <div class="title">
+            <img src="{{ asset('img/logo.png') }}" alt="Logo" width="30" height="30">
             <h1>Docto Hrlibe</h1>
         </div>
         <div class="linka">
