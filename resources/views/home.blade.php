@@ -56,7 +56,7 @@
                     passionnée, dédiée à votre bien-être et soucieuse d’apporter</br>
                     des résultats concrets et durables.</br>
                 </p>
-                <button type="submit">Consulter</button>
+                <a href="#id">Consulter</a>
             </div>
         </div>
 
@@ -80,7 +80,7 @@
             </div>
         </div>
 
-    <div class="plaging">
+    <div class="plaging" id="id">
         <div class="titre">
             <h1>Créneaux disponibles</h1>
         </div>

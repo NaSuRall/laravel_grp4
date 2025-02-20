@@ -127,7 +127,12 @@ p {
     width: 50%;
 }
 
-.MedecinD button {
+.MedecinD a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+
     width: 80%;
     padding: 10px;
     background-color: var(--bleu);
