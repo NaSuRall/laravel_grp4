@@ -38,13 +38,19 @@ h111.center {
     font-family: 'Roboto', sans-serif;
 }
 
+.custom_table tr {
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
 /* Style de l'en-tête
 .custom_table th {
     background-color: rgb(108, 99, 255);#f4f4f4;
 }*/
 
 .info {
-    border-radius: 8px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     background: rgb(35,116,191);
     background: linear-gradient(90deg, rgba(35,116,191,1) 0%, rgba(35,116,191,1) 100%);
 }
@@ -54,11 +60,13 @@ h111.center {
     text-align: left;
 }
 
-/* Liens */
+/* Liens
 .custom_table a {
-    color: #007bff;
+    font-weight: bold;
+    color: black;
+    font-family: 'Roboto', sans-serif;
     text-decoration: none;
-}
+}*/
 
 .custom_table a:hover {
     text-decoration: underline;
@@ -69,26 +77,41 @@ h111.center {
     padding: 8px 12px;
     border-radius: 4px;
     font-size: 14px;
+    font-weight: bold;
     text-align: center;
     cursor: pointer;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s; /* Animation fluide */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 /* Modifier */
+.btn:hover {
+    transform: translateY(-3px); /* Légèrement avancé */
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); /* Ombre plus prononcée */
+}
+
 .btn-warning {
-    background-color: #ffc107;
-    color: #fff;
-    border: none;
+    background-color: #6c757d;
+    font-weight: bold;
+    color: black;
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
 }
 
 .btn-warning:hover {
-    background-color: #e0a800;
+    background-color: #6c757d;
 }
 
 /* Supprimer */
 .btn-danger {
-    background-color: #dc3545;
-    color: #fff;
-    border: none;
+    background-color: #c82333;
+    font-weight: bold;
+    color: black;
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
 }
 
 .btn-danger:hover {
