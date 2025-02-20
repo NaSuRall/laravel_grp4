@@ -271,5 +271,15 @@ p {
     background: #ecf0f1;
     margin: 5px 0;
     border-radius: 5px;
+    transition: 0.5s all ease;
+}
 
+.plan ul li:hover {
+
+    background-color: var(--orange);
+    transform: translateY(-10%);
+}
+
+.hidden {
+    display: none;
 }

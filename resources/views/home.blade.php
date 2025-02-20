@@ -3,6 +3,7 @@
 @section('custom_css')
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
+    <script src="{{ asset('js/slot.js') }}"></script>
 @endsection
 
 @section('content')
@@ -84,6 +85,7 @@
                 <tbody>
                 @php
                     $daysOfWeek = ['Monday' => 'Lundi', 'Tuesday' => 'Mardi', 'Wednesday' => 'Mercredi', 'Thursday' => 'Jeudi', 'Friday' => 'Vendredi', 'Saturday' => 'Samedi', 'Sunday' => 'Dimanche'];
+                    $globalIndex = 0;
                 @endphp
 
                 @foreach($daysOfWeek as $key => $day)
@@ -97,20 +99,35 @@
                             @if (!empty($slots))
                                 <ul>
                                     @foreach ($slots as $slot)
-                                        <li>{{ $slot }}</li>
+                                        <li id="{{ $globalIndex }}">{{ $slot }}</li>
+                                        @php
+                                            $globalIndex++;
+                                        @endphp
                                     @endforeach
                                 </ul>
                             @else
-                                Aucun créneau disponible
+
                             @endif
                         </td>
                     </tr>
                 @endforeach
+
                 </tbody>
             </table>
         </div>
     </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
 
+                const listItems = document.querySelectorAll('li[id]');
 
+                listItems.forEach(item => {
+                    item.addEventListener('click', function() {
+                        const itemId = this.id;
+                        window.location.href = `/rendezvous`;
+                    });
+                });
+            });
+        </script>
 
 @endsection
