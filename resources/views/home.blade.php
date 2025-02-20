@@ -7,7 +7,6 @@
 
 @section('content')
     @include('elements.nav')
-
         <div class="row">
             <div class="column left">
                 <h1>Bonjour {{ auth()->user()->name }} ! Comment allez-vous ?</h1>
