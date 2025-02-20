@@ -3,13 +3,16 @@
 @section('custom_css')
     <link href="https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/Admin_consult_appointment.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
 @endsection
 
 @section('content')
 
+        @include('elements.nav')
+
     <div class="container_custom">
 
-        <h111 class="center">Liste des rendez-vous</h111>
+        <h1 class="center">Liste des rendez-vous</h1>
 
         <table class="custom_table">
             <thead class="info">

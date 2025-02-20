@@ -16,8 +16,9 @@ class EmailController extends Controller
           'message' => 'Ceci est un e-mail envoyé via Laravel et Gmail SMTP.'
        ];
 
+     $plan = Schedule::all();
       Mail::to('doctohrlibe@romain-poulain.fr')->send(new MonEmail($details));
 
-       return view('mail', compact('details'));
+       return view('home', compact('details', 'plan'));
     }
 }
