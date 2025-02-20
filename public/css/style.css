@@ -15,7 +15,13 @@ body{
     backdrop-filter: blur(10px);
 }
 /* Typography */
-h1 {
+.tt {
+    margin: 50px 0px;
+}
+.text{
+    margin-top: 20px;
+}
+h1{
     font-size: 36px;
 }
 
@@ -40,6 +46,7 @@ h3 {
     padding: 60px;
     height: 100%;
     background-color: var(--blanc);
+
 }
 
 .row {
@@ -54,7 +61,7 @@ h3 {
 .left {
     width: 50%;
     color: var(--noir);
-
+    /*flex-direction: column;*/
 }
 
 .right {
@@ -62,19 +69,17 @@ h3 {
 
 }
 
-.text p {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    font-size: 22px;
-    margin-top: 50px;
-}
+/*.text p {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    height: 100%;*/
+/*    font-size: 22px;*/
+/*}*/
 
 p {
     height: 100%;
     font-size: 22px;
-    margin-top: 50px;
 }
 
 /* Medecin Sections */
@@ -256,6 +261,9 @@ p {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .plan ul li {
@@ -263,4 +271,5 @@ p {
     background: #ecf0f1;
     margin: 5px 0;
     border-radius: 5px;
+
 }
