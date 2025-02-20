@@ -1,73 +1,90 @@
 import './bootstrap.js';
-import flatpickr from "flatpickr";
-import "flatpickr/dist/themes/material_blue.css";
 
 document.addEventListener("DOMContentLoaded", () => {
-    if (typeof schedules === 'undefined' || !Array.isArray(schedules)) {
-        console.error('Schedules data is not properly loaded');
+    if (!Array.isArray(schedules) || !Array.isArray(appointments)) {
+        console.error('Schedules or Appointments data is not properly loaded');
         return;
     }
 
-    flatpickr("#datepicker", {
-        enableTime: true,
-        minDate: "today",
-        time_24hr: true,
-        dateFormat: "Y-m-d H:i",
-        minuteIncrement: 60,
+    const dateInput = document.getElementById('appointment_date');
+    const hourSelect = document.getElementById('appointment_hour');
 
-        disable: [
-            function(date) {
-                const dayOfWeek = date.toLocaleDateString('en-US', { weekday: 'long' });
-                return !schedules.find(s => s.day_of_week === dayOfWeek);
-            }
-        ],
+    // Map numeric day (1-7) to day name in English.
+    const dayNames = {
+        1: 'Monday',
+        2: 'Tuesday',
+        3: 'Wednesday',
+        4: 'Thursday',
+        5: 'Friday',
+        6: 'Saturday',
+        7: 'Sunday'
+    };
 
-        onReady: function(selectedDates, dateStr, instance) {
-            let date = selectedDates[0] || instance.currentDateObj;
-            let dayOfWeek = date.toLocaleDateString('en-US', { weekday: 'long' });
-            let daySchedule = schedules.find(s => s.day_of_week === dayOfWeek);
-            if(daySchedule) {
-                let [endHour, endMinute] = daySchedule.end_time.split(':').map(Number);
-                let adjustedEndHour = endHour - 1;
-                if (adjustedEndHour < 0) adjustedEndHour = 0;
-                let newEndTime = `${adjustedEndHour}:${endMinute.toString().padStart(2, '0')}`;
+    dateInput.addEventListener('change', () => {
+        // Clear previous options
+        hourSelect.innerHTML = '<option value="">Sélectionnez une heure</option>';
 
-                instance.set('minTime', daySchedule.start_time);
-                instance.set('maxTime', newEndTime);
+        const selectedDate = new Date(dateInput.value);
+        if (isNaN(selectedDate)) {
+            console.error("Invalid date selected");
+            return;
+        }
 
-                let [startHour, startMinute] = daySchedule.start_time.split(':').map(Number);
-                if (date.getHours() < startHour) {
-                    date.setHours(startHour, startMinute);
-                    instance.setDate(date, false);
-                }
-            }
-        },
+        // Get the day of week from the date input
+        const jsDay = selectedDate.getDay(); // 0 (Sunday) to 6 (Saturday)
+        // Adjust: if Sunday (0) then use 7, otherwise use the number as is.
+        const adjustedDay = (jsDay === 0 ? 7 : jsDay);
+        console.log("Selected day (adjusted):", adjustedDay);
 
-        onChange: function(selectedDates, dateStr, instance) {
-            if (selectedDates.length) {
-                let date = selectedDates[0];
-                let dayOfWeek = date.toLocaleDateString('en-US', { weekday: 'long' });
-                let daySchedule = schedules.find(s => s.day_of_week === dayOfWeek);
-                if(daySchedule) {
-                    let [endHour, endMinute] = daySchedule.end_time.split(':').map(Number);
-                    let adjustedEndHour = endHour - 1;
-                    if (adjustedEndHour < 0) adjustedEndHour = 0;
-                    let newEndTime = `${adjustedEndHour}:${endMinute.toString().padStart(2, '0')}`;
+        // Convert adjusted day to day name using the mapping
+        const dayName = dayNames[adjustedDay];
+        console.log("Converted day name:", dayName);
 
-                    instance.set('minTime', daySchedule.start_time);
-                    instance.set('maxTime', newEndTime);
+        // Find the schedule for the selected day by comparing the day name
+        const scheduleForDay = schedules.find(schedule => {
+            console.log("Comparing schedule day:", schedule.day_of_week, "with day name:", dayName);
+            return schedule.day_of_week === dayName;
+        });
 
-                    let [startHour, startMinute] = daySchedule.start_time.split(':').map(Number);
-                    let currentTime = date.getHours() * 60 + date.getMinutes();
-                    let scheduleStart = startHour * 60 + startMinute;
-                    let scheduleEnd = adjustedEndHour * 60 + endMinute;
+        if (!scheduleForDay) {
+            alert("Aucun horaire disponible pour cette date.");
+            return;
+        }
 
-                    if (currentTime < scheduleStart || currentTime > scheduleEnd) {
-                        date.setHours(startHour, startMinute);
-                        instance.setDate(date, true);
-                    }
-                }
-            }
+        // Assume scheduleForDay.start_time and end_time are in "HH:mm" format.
+        const [startHour] = scheduleForDay.start_time.split(':').map(Number);
+        const [endHour] = scheduleForDay.end_time.split(':').map(Number);
+
+        // Generate available hourly slots (assuming 1-hour appointments)
+        let availableHours = [];
+        for (let hour = startHour; hour <= endHour - 1; hour++) {
+            availableHours.push(hour);
+        }
+
+        // Filter out hours already booked on the selected date.
+        const selectedDateStr = dateInput.value; // format: "YYYY-MM-DD"
+        const bookedHours = appointments
+            .filter(appt => appt.date === selectedDateStr)
+            .map(appt => parseInt(appt.hour.split(':')[0], 10));
+
+        availableHours = availableHours.filter(hour => !bookedHours.includes(hour));
+        console.log("Available hours after filtering booked ones:", availableHours);
+
+        // Populate the select with available hours.
+        if (availableHours.length === 0) {
+            const option = document.createElement('option');
+            option.value = "";
+            option.text = "Aucune heure disponible";
+            hourSelect.appendChild(option);
+        } else {
+            availableHours.forEach(hour => {
+                const option = document.createElement('option');
+                // Format hour as "HH:00"
+                const hourStr = ('0' + hour).slice(-2) + ":00";
+                option.value = hourStr;
+                option.text = hourStr;
+                hourSelect.appendChild(option);
+            });
         }
     });
 });

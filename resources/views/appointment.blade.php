@@ -20,8 +20,15 @@
                         <form action="{{ route('store.appointment') }}" method="POST">
                             @csrf
                             <div class="form-group mb-4">
-                                <label for="datepicker" class="form-label">Choisissez une date et heure:</label>
-                                <input type="text" id="datepicker" name="appointment_datetime" class="form-control" placeholder="Sélectionnez une date" required>
+                                <label for="appointment_date" class="form-label">Choisissez une date:</label>
+                                <input type="date" id="appointment_date" name="appointment_date" class="form-control" min="{{ date('Y-m-d') }}" required>
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label for="appointment_hour" class="form-label">Choisissez une heure:</label>
+                                <select id="appointment_hour" name="appointment_hour" class="form-select" required>
+                                    <option value="">Sélectionnez une heure</option>
+                                </select>
                             </div>
 
                             <div class="form-group mb-4">
@@ -51,9 +58,8 @@
 
 @section('js')
     <script>
-        // Pass PHP schedules to JavaScript
-        const schedules = @json($schedules);
-        console.log('Available schedules:', schedules);
+        window.schedules = @json($schedules);
+        window.appointments = @json($appointments);
     </script>
     <script src="{{ asset('js/app.js') }}"></script>
 @endsection

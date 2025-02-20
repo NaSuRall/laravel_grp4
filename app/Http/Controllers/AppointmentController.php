@@ -12,8 +12,17 @@ class AppointmentController extends Controller
 {
     public function index()
     {
-        // Fetch all schedules and simplify the data structure
-        $schedules = Schedule::all()->map(function($schedule) {
+        // Fetch the most recent schedule for each day of the week
+        $latestSchedules = Schedule::orderBy('created_at', 'desc')
+            ->get()
+            ->groupBy('day_of_week')
+            ->map(function ($group) {
+                return $group->first();
+            })
+            ->values();
+
+        // Map the schedules to the required format for the view
+        $schedules = $latestSchedules->map(function ($schedule) {
             return [
                 'day_of_week' => $schedule->day_of_week,
                 'start_time'  => $schedule->start_time,
@@ -21,26 +30,36 @@ class AppointmentController extends Controller
             ];
         });
 
-        return view('appointment', compact('schedules'));
+        $appointments = Appointment::where('date', '>=', Carbon::today())
+            ->get()
+            ->map(function ($appointment) {
+                return [
+                    'date' => $appointment->date, // YYYY-MM-DD
+                    'hour' => $appointment->hour, // HH:MM
+                ];
+            });
+
+        return view('appointment', compact('schedules', 'appointments'));
     }
 
     public function store(Request $request)
     {
-        // Validate the input
+        // Validate the input. The appointment_hour is expected to be in HH:00 format.
         $request->validate([
-            'appointment_datetime' => 'required|date',
+            'appointment_date' => 'required|date',
+            'appointment_hour' => ['required', 'regex:/^(0[0-9]|1[0-9]|2[0-3]):00$/'],
             'consultation_type'    => 'required|in:standard,urgent',
             'description'          => 'required|string|max:1000',
         ]);
 
-        // Convert the datetime string to a Carbon instance
-        $dateTime = Carbon::parse($request->appointment_datetime);
+        // Combine the date and hour to form a datetime
+        $dateTime = Carbon::parse($request->appointment_date . ' ' . $request->appointment_hour);
 
         // Create and save the appointment
         $appointment = new Appointment([
             'user_id'           => Auth::id(),
             'date'              => $dateTime->format('Y-m-d'),
-            'hour'              => $dateTime->format('H:i:s'),
+            'hour'              => $dateTime->format('H:i'),
             'consultation_type' => $request->consultation_type,
             'description'       => $request->description,
         ]);
