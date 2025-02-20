@@ -117,6 +117,8 @@
         </div>
     </div>
         <script>
+            import Swal from "laravel-mix/src/Dispatcher.js";
+
             document.addEventListener('DOMContentLoaded', function() {
 
                 const listItems = document.querySelectorAll('li[id]');
@@ -130,4 +132,16 @@
             });
         </script>
 
+    @if(session('success'))
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: "{{ session('success') }}",
+                showConfirmButton: false,
+                timer: 3000,
+                toast: true
+            });
+        </script>
+    @endif
 @endsection

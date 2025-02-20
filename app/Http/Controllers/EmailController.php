@@ -12,8 +12,8 @@ class EmailController extends Controller
 {
     public function index(Request $request){
      $details = [
-          'titre' => 'Bonjour !',
-          'message' => 'Ceci est un e-mail envoyé via Laravel et Gmail SMTP.'
+          'titre' => 'Confirmation rendez-vous Docto Hrlibe',
+          'message' => 'Voici le mail de confirmation du rendez-vous de : '
        ];
 
      $plan = Schedule::all();

@@ -7,6 +7,8 @@ use App\Models\Schedule;
 use App\Models\Appointment;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MonEmail;
 
 class AppointmentController extends Controller
 {
@@ -44,7 +46,6 @@ class AppointmentController extends Controller
 
     public function store(Request $request)
     {
-        // Validate the input. The appointment_hour is expected to be in HH:00 format.
         $request->validate([
             'appointment_date' => 'required|date',
             'appointment_hour' => ['required', 'regex:/^(0[0-9]|1[0-9]|2[0-3]):00$/'],
@@ -52,10 +53,15 @@ class AppointmentController extends Controller
             'description'          => 'required|string|max:1000',
         ]);
 
-        // Combine the date and hour to form a datetime
         $dateTime = Carbon::parse($request->appointment_date . ' ' . $request->appointment_hour);
 
-        // Create and save the appointment
+        $details = [
+            'titre' => 'Bonjour ! Voici le mail de Confiramation de rendez-vous chez Docto Hrlibe ',
+            'message' => 'Merci beaucoup de faire confiance à Docto Hrlibe pour prendre votre rendez-vous, bon courage et soignez-vous bien !'
+        ];
+
+        Mail::to('doctohrlibe@romain-poulain.fr')->send(new MonEmail($details));
+
         $appointment = new Appointment([
             'user_id'           => Auth::id(),
             'date'              => $dateTime->format('Y-m-d'),
@@ -65,30 +71,22 @@ class AppointmentController extends Controller
         ]);
 
         $appointment->save();
+        $plan = Schedule::all();
 
-        return redirect()->route('rendezvous')
-            ->with('success', 'Rendez-vous pris avec succès!');
+        // Utilisation de session()->flash() pour passer le message de succès
+        session()->flash('success', 'Votre rendez-vous a bien été enregistré.');
+
+        return view('home', compact('details', 'plan'));
     }
-
 
 
     // crée la function edit
     public  function edit()
     {
         $plan = Schedule::all();
-
-
-        // modifier le rendez-vous
-
-
-
-
-
    //     return view('home', compact('plan'));
     }
-
     public  function destroy(){
-
 
     }
 }

@@ -21,7 +21,7 @@ class MonEmail extends Mailable
     public function build()
     {
         return $this->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))
-            ->subject('Votre sujet d\'e-mail')
+            ->subject('Confirmation de rendez-vous')
             ->view('mail')
             ->with('details', $this->details);
     }
