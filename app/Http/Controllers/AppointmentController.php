@@ -14,7 +14,7 @@ class AppointmentController extends Controller
 {
     public function index()
     {
-        // Fetch the most recent schedule for each day of the week
+
         $latestSchedules = Schedule::orderBy('created_at', 'desc')
             ->get()
             ->groupBy('day_of_week')
@@ -23,7 +23,7 @@ class AppointmentController extends Controller
             })
             ->values();
 
-        // Map the schedules to the required format for the view
+
         $schedules = $latestSchedules->map(function ($schedule) {
             return [
                 'day_of_week' => $schedule->day_of_week,
@@ -36,8 +36,8 @@ class AppointmentController extends Controller
             ->get()
             ->map(function ($appointment) {
                 return [
-                    'date' => $appointment->date, // YYYY-MM-DD
-                    'hour' => $appointment->hour, // HH:MM
+                    'date' => $appointment->date,
+                    'hour' => $appointment->hour,
                 ];
             });
 
@@ -73,18 +73,17 @@ class AppointmentController extends Controller
         $appointment->save();
         $plan = Schedule::all();
 
-        // Utilisation de session()->flash() pour passer le message de succès
         session()->flash('success', 'Votre rendez-vous a bien été enregistré.');
 
         return view('home', compact('details', 'plan'));
     }
 
 
-    // crée la function edit
+
     public  function edit()
     {
         $plan = Schedule::all();
-   //     return view('home', compact('plan'));
+
     }
     public  function destroy(){
 

@@ -117,7 +117,6 @@
         </div>
     </div>
         <script>
-            import Swal from "laravel-mix/src/Dispatcher.js";
 
             document.addEventListener('DOMContentLoaded', function() {
 
