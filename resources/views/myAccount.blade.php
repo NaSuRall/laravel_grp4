@@ -10,19 +10,22 @@
     <div class="centre">
         <div class="contact">
             <div>
-                <form class="contact-form">
+                <form action="{{ route('send.email') }}" method="GET" class="contact-form">
                     <h3>Contactez-nous</h3>
                     <label for="name">Nom :</label>
-                    <input type="text" id="name" name="name" required>
+                    <input type="text" id="name" name="name">
 
                     <label for="email">Objet :</label>
-                    <input type="text" id="objet" name="objet" required>
+                    <input type="text" id="objet" name="objet" >
 
                     <label for="message">Message :</label>
-                    <textarea id="message" name="message" rows="4" cols="55" required></textarea>
+                    <textarea id="message" name="message" rows="4" cols="55" ></textarea>
 
                     <button type="submit">Envoyer</button>
                 </form>
+
+                @csrf
+
             </div>
         </div>
     </div>
