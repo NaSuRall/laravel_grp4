@@ -12,10 +12,12 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/font.css') }}">
 
     <!-- Scripts -->
     @yield('custom_css')
     <script src="{{ mix('js/app.js') }}"></script>
+
 </head>
 <body>
         <main class="py-4">

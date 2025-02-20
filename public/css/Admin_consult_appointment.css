@@ -1,17 +1,17 @@
+@import "annimation.css";
+@import "colors.css";
 /* Conteneur principal */
 .container_custom {
-    width: 90%;
-    margin: 20px auto;
-    background-color: #fff;
+    width: 100%;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    background: rgb(9,9,121);
-    background: linear-gradient(90deg, rgba(9,9,121,1) 0%, rgba(53,144,228,1) 51%, rgba(9,9,121,1) 100%);
+    background: linear-gradient(90deg, var(--ciel), var(--violet), var(--ciel));
+    background-size: 300% 300%;
+    animation: movingGradient 10s infinite alternate ease-in-out;
+    backdrop-filter: blur(10px);
 }
 
 /* Centrage du titre */
-h111.center {
+h3.center {
     display: block;
     text-align: center;
     font-size: 30px;
@@ -40,15 +40,35 @@ h111.center {
 
 .custom_table tr {
     border-radius: 15px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
+    border: 1px solid darkgray;
 
+}
+.custom_table tr th{
+    background-color: var(--bleuCian);
+    color: white;
+}
+.con{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
+.reg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 55%;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius:10px;
+}
 /* Style de l'en-tête */
 .info {
     border-radius: 15px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    background: rgb(35,116,191);
-    background: linear-gradient(90deg, rgba(35,116,191,1) 0%, rgba(35,116,191,1) 100%);
+    background: rgb(255, 255, 255);
+    /*background: linear-gradient(90deg, rgba(35,116,191,1) 0%, rgba(35,116,191,1) 100%);*/
     overflow: hidden;
 }
 
@@ -80,7 +100,6 @@ h111.center {
     text-align: center;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     display: inline-block;
     border: none;
 }
@@ -110,28 +129,4 @@ h111.center {
 
 .btn-danger:hover {
     background-color: #a71d2a;
-}
-
-/* Responsive : Adapter la largeur pour petits écrans */
-@media (max-width: 768px) {
-    .container_custom {
-        width: 95%;
-        padding: 15px;
-    }
-
-    .custom_table th, .custom_table td {
-        font-size: medium;
-        padding: 8px;
-    }
-
-    .actions {
-        flex-direction: column; /* Empiler les boutons sur petits écrans */
-        align-items: center;
-    }
-
-    .btn {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 5px;
-    }
 }
