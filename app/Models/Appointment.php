@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Schedule;
 
 class Appointment extends Model
 {
@@ -17,7 +16,7 @@ class Appointment extends Model
         'description'
     ];
 
-    public function getTable(): string
+   public function getTable(): string
     {
         return $this->table;
     }

@@ -11,6 +11,3 @@
             <a href="{{ route('myAcount') }}">{{ auth()->user()->name}}</a>
         </div>
     </div>
-
-
-

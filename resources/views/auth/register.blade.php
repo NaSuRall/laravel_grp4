@@ -90,6 +90,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
+                                <a href="{{ route('login') }}">Deja un compte ? Login !</a>
                             </div>
                         </div>
                     </form>
