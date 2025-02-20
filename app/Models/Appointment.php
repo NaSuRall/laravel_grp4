@@ -9,7 +9,6 @@ class Appointment extends Model
     //
     protected $table = 'appointment';
     protected $fillable = [
-        'id',
         'user_id',
         'date',
         'hour',
@@ -17,7 +16,7 @@ class Appointment extends Model
         'description'
     ];
 
-    public function getTable(): string
+   public function getTable(): string
     {
         return $this->table;
     }
@@ -30,5 +29,10 @@ class Appointment extends Model
         $this->fillable = $fillable;
     }
 
+    public function appointment()
+    {
+        $schedules = Schedule::all();
+        return view('appointment', compact('schedules'));
+    }
 
 }

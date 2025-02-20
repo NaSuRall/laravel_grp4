@@ -63,13 +63,24 @@
 
                 @foreach($daysOfWeek as $key => $day)
                     @php
-                    $entry = $plan->where('day_of_week', $key)->first();
+                    $entry = $plan->where('day_of_week', $key)->last();
+                     $slots = $entry ? $entry->getTimeSlots() : [];
                     @endphp
                     <tr>
                         <td>{{ $day }}</td>
                         <td>{{ $entry ? $entry->start_time : '—' }}</td>
                         <td>{{ $entry ? $entry->end_time : '—' }}</td>
-                        <td> — </td>
+                        <td>
+                            @if (!empty($slots))
+                                <ul>
+                                    @foreach ($slots as $slot)
+                                        <p>{{ $slot }}</p>
+                                    @endforeach
+                                </ul>
+                            @else
+                                —
+                            @endif
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

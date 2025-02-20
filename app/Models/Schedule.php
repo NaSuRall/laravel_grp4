@@ -6,15 +6,35 @@ use Illuminate\Database\Eloquent\Model;
 
 class Schedule extends Model
 {
-        protected $table = 'schedules';
+        protected $table = 'schedule';
         protected $fillable = [
-            'id',
             'user_id',
             'day_of_week',
             'start_time',
             'end_time',
-
         ];
+
+
+
+    public function getTimeSlots(): array
+    {
+        if (!$this->start_time || !$this->end_time) {
+            return [];
+        }
+
+        $start = strtotime($this->start_time);
+        $end = strtotime($this->end_time);
+        $slots = [];
+
+        while ($start < $end) {
+            $nextSlot = $start + 3600;
+            if ($nextSlot <= $end) {
+                $slots[] = date('H:i', $start) . ' - ' . date('H:i', $nextSlot);
+            }
+            $start = $nextSlot;
+        }
+        return $slots;
+    }
 
 
 

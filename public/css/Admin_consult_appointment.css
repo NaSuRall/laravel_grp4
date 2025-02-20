@@ -1,3 +1,134 @@
-h1{
-    background-color: red;
+/* Conteneur principal */
+.container_custom {
+    width: 90%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    background: rgb(9,9,121);
+    background: linear-gradient(90deg, rgba(9,9,121,1) 0%, rgba(53,144,228,1) 51%, rgba(9,9,121,1) 100%);
+}
+
+/* Centrage du titre */
+h111.center {
+    display: block;
+    text-align: center;
+    font-size: 30px;
+    color: black;
+    font-family: 'RocknRoll One', sans-serif;
+    font-weight: bold;
+    padding: 30px 0;
+    margin-bottom: 5px;
+}
+
+/* Table */
+.custom_table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 5px;
+}
+
+/* En-tête et cellules */
+.custom_table th, .custom_table td {
+    padding: 12px;
+    font-weight: bold;
+    color: black;
+    font-size: large;
+    font-family: 'Roboto', sans-serif;
+}
+
+.custom_table tr {
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style de l'en-tête
+.custom_table th {
+    background-color: rgb(108, 99, 255);#f4f4f4;
+}*/
+
+.info {
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    background: rgb(35,116,191);
+    background: linear-gradient(90deg, rgba(35,116,191,1) 0%, rgba(35,116,191,1) 100%);
+}
+
+/* Alignement des 4 premières colonnes à gauche */
+.custom_table th:not(.actions-column), .custom_table td:not(.actions-column) {
+    text-align: left;
+}
+
+/* Liens
+.custom_table a {
+    font-weight: bold;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+}*/
+
+.custom_table a:hover {
+    text-decoration: underline;
+}
+
+/* Boutons */
+.btn {
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s; /* Animation fluide */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Modifier */
+.btn:hover {
+    transform: translateY(-3px); /* Légèrement avancé */
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); /* Ombre plus prononcée */
+}
+
+.btn-warning {
+    background-color: #6c757d;
+    font-weight: bold;
+    color: black;
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+}
+
+.btn-warning:hover {
+    background-color: #6c757d;
+}
+
+/* Supprimer */
+.btn-danger {
+    background-color: #c82333;
+    font-weight: bold;
+    color: black;
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Alignement spécifique pour la colonne des actions */
+.actions-column {
+    text-align: right;
+    width: 200px; /* Ajuste la largeur de la colonne des actions */
+}
+
+/* Alignement des boutons dans la colonne des actions */
+.actions {
+    text-align: right;
+}
+
+.actions .btn {
+    margin-left: 5px;
 }
