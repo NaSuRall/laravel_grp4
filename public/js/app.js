@@ -17647,17 +17647,95 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bootstrap_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bootstrap.js */ "./resources/js/bootstrap.js");
 /* harmony import */ var flatpickr__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flatpickr */ "./node_modules/flatpickr/dist/esm/index.js");
 /* harmony import */ var flatpickr_dist_themes_material_blue_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flatpickr/dist/themes/material_blue.css */ "./node_modules/flatpickr/dist/themes/material_blue.css");
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
 document.addEventListener("DOMContentLoaded", function () {
+  if (typeof schedules === 'undefined' || !Array.isArray(schedules)) {
+    console.error('Schedules data is not properly loaded');
+    return;
+  }
   (0,flatpickr__WEBPACK_IMPORTED_MODULE_1__["default"])("#datepicker", {
     enableTime: true,
-    inline: true,
     minDate: "today",
     time_24hr: true,
-    dateFormat: "Y-m-d H:00",
-    minuteIncrement: 60
+    dateFormat: "Y-m-d H:i",
+    minuteIncrement: 60,
+    disable: [function (date) {
+      var dayOfWeek = date.toLocaleDateString('en-US', {
+        weekday: 'long'
+      });
+      return !schedules.find(function (s) {
+        return s.day_of_week === dayOfWeek;
+      });
+    }],
+    onReady: function onReady(selectedDates, dateStr, instance) {
+      var date = selectedDates[0] || instance.currentDateObj;
+      var dayOfWeek = date.toLocaleDateString('en-US', {
+        weekday: 'long'
+      });
+      var daySchedule = schedules.find(function (s) {
+        return s.day_of_week === dayOfWeek;
+      });
+      if (daySchedule) {
+        var _daySchedule$end_time = daySchedule.end_time.split(':').map(Number),
+          _daySchedule$end_time2 = _slicedToArray(_daySchedule$end_time, 2),
+          endHour = _daySchedule$end_time2[0],
+          endMinute = _daySchedule$end_time2[1];
+        var adjustedEndHour = endHour - 1;
+        if (adjustedEndHour < 0) adjustedEndHour = 0;
+        var newEndTime = "".concat(adjustedEndHour, ":").concat(endMinute.toString().padStart(2, '0'));
+        instance.set('minTime', daySchedule.start_time);
+        instance.set('maxTime', newEndTime);
+        var _daySchedule$start_ti = daySchedule.start_time.split(':').map(Number),
+          _daySchedule$start_ti2 = _slicedToArray(_daySchedule$start_ti, 2),
+          startHour = _daySchedule$start_ti2[0],
+          startMinute = _daySchedule$start_ti2[1];
+        if (date.getHours() < startHour) {
+          date.setHours(startHour, startMinute);
+          instance.setDate(date, false);
+        }
+      }
+    },
+    onChange: function onChange(selectedDates, dateStr, instance) {
+      if (selectedDates.length) {
+        var date = selectedDates[0];
+        var dayOfWeek = date.toLocaleDateString('en-US', {
+          weekday: 'long'
+        });
+        var daySchedule = schedules.find(function (s) {
+          return s.day_of_week === dayOfWeek;
+        });
+        if (daySchedule) {
+          var _daySchedule$end_time3 = daySchedule.end_time.split(':').map(Number),
+            _daySchedule$end_time4 = _slicedToArray(_daySchedule$end_time3, 2),
+            endHour = _daySchedule$end_time4[0],
+            endMinute = _daySchedule$end_time4[1];
+          var adjustedEndHour = endHour - 1;
+          if (adjustedEndHour < 0) adjustedEndHour = 0;
+          var newEndTime = "".concat(adjustedEndHour, ":").concat(endMinute.toString().padStart(2, '0'));
+          instance.set('minTime', daySchedule.start_time);
+          instance.set('maxTime', newEndTime);
+          var _daySchedule$start_ti3 = daySchedule.start_time.split(':').map(Number),
+            _daySchedule$start_ti4 = _slicedToArray(_daySchedule$start_ti3, 2),
+            startHour = _daySchedule$start_ti4[0],
+            startMinute = _daySchedule$start_ti4[1];
+          var currentTime = date.getHours() * 60 + date.getMinutes();
+          var scheduleStart = startHour * 60 + startMinute;
+          var scheduleEnd = adjustedEndHour * 60 + endMinute;
+          if (currentTime < scheduleStart || currentTime > scheduleEnd) {
+            date.setHours(startHour, startMinute);
+            instance.setDate(date, true);
+          }
+        }
+      }
+    }
   });
 });
 

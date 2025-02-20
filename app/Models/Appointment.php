@@ -28,4 +28,11 @@ class Appointment extends Model
     {
         $this->fillable = $fillable;
     }
+
+    public function appointment()
+    {
+        $schedules = Schedule::all();
+        return view('appointment', compact('schedules'));
+    }
+
 }

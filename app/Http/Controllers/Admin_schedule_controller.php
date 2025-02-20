@@ -10,8 +10,7 @@ class Admin_schedule_controller extends Controller
     public function admin_schedule()
     {
         // Retrieve all schedule entries since user_id is no longer in the table.
-        $plan = Schedule::all();
-
+        $plan = Schedule::all(); // Récupère tout sans filtrer par user_id
         return view('admin_schedule', compact('plan'));
     }
 

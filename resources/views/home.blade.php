@@ -80,6 +80,48 @@
             </div>
         </div>
 
+    <div class="plaging">
+        <div class="titre">
+            <h1>Créneaux disponibles</h1>
+        </div>
+
+        <div class="plan">
+            <table>
+                <thead>
+                <tr>
+                    <th>Jour</th>
+                    <th>Créneaux disponibles</th>
+                </tr>
+                </thead>
+                <tbody>
+                @php
+                    $daysOfWeek = ['Monday' => 'Lundi', 'Tuesday' => 'Mardi', 'Wednesday' => 'Mercredi', 'Thursday' => 'Jeudi', 'Friday' => 'Vendredi', 'Saturday' => 'Samedi', 'Sunday' => 'Dimanche'];
+                @endphp
+
+                @foreach($daysOfWeek as $key => $day)
+                    @php
+                        $entry = $plan->where('day_of_week', $key)->last();
+                        $slots = $entry ? $entry->getTimeSlots() : [];
+                    @endphp
+                    <tr>
+                        <td>{{ $day }}</td>
+                        <td>
+                            @if (!empty($slots))
+                                <ul>
+                                    @foreach ($slots as $slot)
+                                        <li>{{ $slot }}</li>
+                                    @endforeach
+                                </ul>
+                            @else
+                                Aucun créneau disponible
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 
 

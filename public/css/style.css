@@ -201,3 +201,66 @@ p {
 .contact-form button:hover {
     background-color: var(--bleuSombreHover);
 }
+.plaging {
+    width: 80%;
+    max-width: 900px;
+    margin: 40px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre */
+.titre h1 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Tableau */
+.plan table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+/* En-têtes du tableau */
+.plan table thead {
+    background: #3498db;
+    color: white;
+}
+
+.plan table th {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+/* Lignes du tableau */
+.plan table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+    background: #fff;
+}
+
+/* Alternance des couleurs pour améliorer la lisibilité */
+.plan table tbody tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+/* Liste des créneaux */
+.plan ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.plan ul li {
+    padding: 5px;
+    background: #ecf0f1;
+    margin: 5px 0;
+    border-radius: 5px;
+}
