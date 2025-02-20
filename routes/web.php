@@ -1,6 +1,8 @@
     <?php
 
     use Illuminate\Support\Facades\Route;
+    use Illuminate\Support\Facades\Mail;
+    use App\Mail\MonEmail;
 
     Route::get('/', function () {
         return view('home');
@@ -15,8 +17,19 @@
     Route::get('/rendezvous', [App\Http\Controllers\AppointmentController::class, 'index'])->name('rendezvous');
     Route::post('/rendezvous/store', [App\Http\Controllers\AppointmentController::class, 'store'])->name('store.appointment');
 
+//    Route::post('/send-email', function () {
+//        $details = [
+//            'titre' => 'Bonjour !',
+//            'message' => 'Ceci est un e-mail envoyé via Laravel et Gmail SMTP.'
+//        ];
+//        dd($details);
+//        Mail::to('testlucasmarrant@gmail.com')->send(new MonEmail($details));
+//
+//        return view('home');
+//    })->name('send.email');
 
 
+    Route::get('/send-email', [App\Http\Controllers\EmailController::class, 'index'])->name('send.email');
 
     Route::get('/logout', function () {
         Auth::logout(); // Déconnexion de l'utilisateur
