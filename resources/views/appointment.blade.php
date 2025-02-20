@@ -21,7 +21,7 @@
                             @csrf
                             <div class="form-group mb-4">
                                 <label for="appointment_date" class="form-label">Choisissez une date:</label>
-                                <input type="date" id="appointment_date" name="appointment_date" class="form-control" required>
+                                <input type="date" id="appointment_date" name="appointment_date" class="form-control" min="{{ date('Y-m-d') }}" required>
                             </div>
 
                             <div class="form-group mb-4">
