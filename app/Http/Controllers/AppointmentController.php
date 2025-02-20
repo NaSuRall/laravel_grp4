@@ -50,4 +50,26 @@ class AppointmentController extends Controller
         return redirect()->route('rendezvous')
             ->with('success', 'Rendez-vous pris avec succès!');
     }
+
+
+
+    // crée la function edit
+    public  function edit()
+    {
+        $plan = Schedule::all();
+
+
+        // modifier le rendez-vous
+
+
+
+
+
+   //     return view('home', compact('plan'));
+    }
+
+    public  function destroy(){
+
+
+    }
 }
