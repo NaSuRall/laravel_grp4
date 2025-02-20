@@ -25,44 +25,43 @@
             </tr>
             </thead>
             <tbody>
-            @php
-                $daysOfWeek = ['Monday' => 'Lundi', 'Tuesday' => 'Mardi', 'Wednesday' => 'Mercredi', 'Thursday' => 'Jeudi', 'Friday' => 'Vendredi', 'Saturday' => 'Samedi', 'Sunday' => 'Dimanche'];
-            @endphp
+                <thead class="info">
 
-            @foreach($daysOfWeek as $key => $day)
                 @php
-                    $entry = $plan->where('day_of_week', $key)->last();
-                     $slots = $entry ? $entry->getTimeSlots() : [];
+                    $daysOfWeek = ['Monday' => 'Lundi', 'Tuesday' => 'Mardi', 'Wednesday' => 'Mercredi', 'Thursday' => 'Jeudi', 'Friday' => 'Vendredi', 'Saturday' => 'Samedi', 'Sunday' => 'Dimanche'];
                 @endphp
-                <tr>
-                    <td>{{ $day }}</td>
-                    <td>{{ $entry ? $entry->start_time : '—' }}</td>
-                    <td>{{ $entry ? $entry->end_time : '—' }}</td>
-                    <td>
-                        @if (!empty($slots))
-                            <ul>
-                                @foreach ($slots as $slot)
-                                    <p>{{ $slot }}</p>
-                                @endforeach
-                            </ul>
-                        @else
-                            —
-                        @endif
-                    </td>
-                    <td class="actions">
-                        <a href="{{ route('appointment.edit', auth()->user()->id) }}" class="btn btn-warning">Modifier</a>
-                        <form action="{{ route('appointment.destroy', auth()->user()->id) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer ce rendez-vous ?');" style="display: inline-block;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Supprimer</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
 
-
-
-
+                @foreach($daysOfWeek as $key => $day)
+                    @php
+                        $entry = $plan->where('day_of_week', $key)->last();
+                         $slots = $entry ? $entry->getTimeSlots() : [];
+                    @endphp
+                    <tr>
+                        <td>{{ $day }}</td>
+                        <td>{{ $entry ? $entry->start_time : '—' }}</td>
+                        <td>{{ $entry ? $entry->end_time : '—' }}</td>
+                        <td>
+                            @if (!empty($slots))
+                                <ul>
+                                    @foreach ($slots as $slot)
+                                        <p>{{ $slot }}</p>
+                                    @endforeach
+                                </ul>
+                            @else
+                                —
+                            @endif
+                        </td>
+                        <td class="actions">
+                            <a href="{{ route('appointment.edit', auth()->user()->id) }}" class="btn btn-warning">Modifier</a>
+                            <form action="{{ route('appointment.destroy', auth()->user()->id) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer ce rendez-vous ?');" style="display: inline-block;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </thead>
             </tbody>
         </table>
 
