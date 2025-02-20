@@ -34,6 +34,7 @@
     padding: 20px;
     background-color: var(--violet);
     position: static;
+    font-weight: bold;
 
 
 }
