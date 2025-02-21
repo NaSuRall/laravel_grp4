@@ -4,12 +4,10 @@
     use Illuminate\Support\Facades\Mail;
     use App\Mail\MonEmail;
 
-    Route::get('/', function () {
-        return view('home');
-    });
+
     Auth::routes();
 
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/Admin', [App\Http\Controllers\Admin_consult_appointment_controller::class, 'admin'])->name('admin.showClient');
     Route::get('/Admin/schedule', [App\Http\Controllers\Admin_schedule_controller::class, 'admin_schedule'])->name('admin.schedule');
     Route::post('/Admin/appointment/formSub', [App\Http\Controllers\Admin_schedule_controller::class, 'send_form_admin'])->name('send_form_admin');
