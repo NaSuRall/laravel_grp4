@@ -1,8 +1,8 @@
 @import "annimation.css";
 @import "colors.css";
-/* Conteneur principal */
 .container_custom {
     width: 100%;
+    height: 85.7vh;
     padding: 20px;
     background: linear-gradient(90deg, var(--ciel), var(--violet), var(--ciel));
     background-size: 300% 300%;
@@ -10,7 +10,6 @@
     backdrop-filter: blur(10px);
 }
 
-/* Centrage du titre */
 h3.center {
     display: block;
     text-align: center;
@@ -22,14 +21,12 @@ h3.center {
     margin-bottom: 5px;
 }
 
-/* Table */
 .custom_table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 5px;
 }
 
-/* En-tête et cellules */
 .custom_table th, .custom_table td {
     padding: 12px;
     font-weight: bold;
@@ -64,7 +61,7 @@ h3.center {
     padding: 20px;
     border-radius:10px;
 }
-/* Style de l'en-tête */
+
 .info {
     border-radius: 15px;
     background: rgb(255, 255, 255);
@@ -72,26 +69,22 @@ h3.center {
     overflow: hidden;
 }
 
-/* Alignement des 4 premières colonnes à gauche */
 .custom_table th:not(.actions-column),
 .custom_table td:not(.actions-column) {
     text-align: left;
 }
 
-/* Alignement spécifique pour la colonne des actions */
 .actions-column {
     text-align: right;
-    width: 200px; /* Ajuste la largeur de la colonne des actions */
+    width: 200px;
 }
 
-/* Alignement des boutons dans la colonne des actions */
 .actions {
     display: flex;
-    gap: 10px; /* Espacement entre les boutons */
-    justify-content: flex-end; /* Alignement à droite */
+    gap: 10px;
+    justify-content: flex-end;
 }
 
-/* Boutons */
 .btn {
     padding: 8px 12px;
     border-radius: 4px;
@@ -104,13 +97,11 @@ h3.center {
     border: none;
 }
 
-/* Animation au survol pour tous les boutons */
 .btn:hover {
     transform: translateY(-3px);
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Modifier */
 .btn-warning {
     background-color: #6c757d;
     color: black;
@@ -121,7 +112,6 @@ h3.center {
     background-color: #4a5568;
 }
 
-/* Supprimer */
 .btn-danger {
     background-color: #c82333; /* Rouge Bootstrap */
     color: black;

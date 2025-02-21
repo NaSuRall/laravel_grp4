@@ -34,8 +34,11 @@
                             <td>{{ $rdvs->hour }}</td>
                             <td>{{ $rdvs->description }}</td>
                             <td class="actions">
-                                <a href="{{ route('appointment.edit', auth()->user()->id) }}" class="btn btn-warning">Modifier</a>
-                                <form action="{{ route('appointment.destroy', auth()->user()->id) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer ce rendez-vous ?');" style="display: inline-block;">
+                                <a href="{{ route('appointment.edit', auth()->user()->id) }}"
+                                   class="btn btn-warning">Modifier</a>
+                                <form action="{{ route('appointment.destroy', auth()->user()->id) }}"
+                                      method="POST" onsubmit="return confirm('Voulez-vous vraiment ' +
+                                       'supprimer ce rendez-vous ?');" style="display: inline-block;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Supprimer</button>
