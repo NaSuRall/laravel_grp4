@@ -11,8 +11,7 @@ class Admin_consult_appointment_controller extends Controller
 {
     public function admin()
     {
-        // Récupérer les RDV dans la DB
-        $rdv = Appointment::all();
+        $rdv = Appointment::with('user')->get();
         $plan = Schedule::all();
         return view('admin_consult_appointment', compact('rdv','plan'));
     }

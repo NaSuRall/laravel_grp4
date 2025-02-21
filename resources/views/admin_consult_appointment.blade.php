@@ -29,7 +29,7 @@
 
                     @foreach($rdv as $rdvs)
                         <tr>
-                            <td>{{ $rdvs->user_id }}</td>
+                            <td>{{ $rdvs->user->name }}</td>
                             <td>{{ $rdvs->date }}</td>
                             <td>{{ $rdvs->hour }}</td>
                             <td>{{ $rdvs->description }}</td>

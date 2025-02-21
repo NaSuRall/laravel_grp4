@@ -29,6 +29,12 @@ class Appointment extends Model
         $this->fillable = $fillable;
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+
     public function appointment()
     {
         $schedules = Schedule::all();
