@@ -30,6 +30,6 @@ class Admin_schedule_controller extends Controller
             'end_time'    => $request->input('end_time'),
         ]);
 
-        return redirect()->route('home', $planing)->with('success', 'Créneau ajouté avec succès.');
+        return redirect()->route('admin.schedule')->with('success', 'Créneau ajouté avec succès.');
     }
 }

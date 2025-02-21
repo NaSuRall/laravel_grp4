@@ -24,10 +24,22 @@
             </select>
 
             <label for="start_time">Heure de début :</label>
-            <input type="time" id="start_time" name="start_time" required>
+            <select id="start_time" name="start_time" required>
+                @for ($hour = 0; $hour < 24; $hour++)
+                    <option value="{{ str_pad($hour, 2, '0', STR_PAD_LEFT) }}:00">
+                        {{ str_pad($hour, 2, '0', STR_PAD_LEFT) }}:00
+                    </option>
+                @endfor
+            </select>
 
             <label for="end_time">Heure de fin :</label>
-            <input type="time" id="end_time" name="end_time" required>
+            <select id="end_time" name="end_time" required>
+                @for ($hour = 0; $hour < 24; $hour++)
+                    <option value="{{ str_pad($hour, 2, '0', STR_PAD_LEFT) }}:00">
+                        {{ str_pad($hour, 2, '0', STR_PAD_LEFT) }}:00
+                    </option>
+                @endfor
+            </select>
 
             <input type="hidden" name="user_id" value="{{ auth()->id() }}">
             <div class="btn">
@@ -64,7 +76,7 @@
                 @foreach($daysOfWeek as $key => $day)
                     @php
                     $entry = $plan->where('day_of_week', $key)->last();
-                     $slots = $entry ? $entry->getTimeSlots() : [];
+                    $slots = $entry ? $entry->getTimeSlots() : [];
                     @endphp
                     <tr>
                         <td>{{ $day }}</td>
@@ -88,5 +100,16 @@
         </div>
 
     </div>
-
+    @if(session('success'))
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: "{{ session('success') }}",
+                showConfirmButton: false,
+                timer: 3000,
+                toast: true
+            });
+        </script>
+    @endif
 @endsection
