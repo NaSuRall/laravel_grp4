@@ -21,7 +21,7 @@
 
     Route::get('/logout', function () {
         Auth::logout(); // Déconnexion de l'utilisateur
-        return redirect('/home'); // Rediriger vers la page d'accueil (ou une autre page)
+        return redirect('/'); // Rediriger vers la page d'accueil (ou une autre page)
     })->name('logout');
 
 Route::get('/appointment/{id}/edit', [App\Http\Controllers\AppointmentController::class, 'edit'])->name('appointment.edit');
