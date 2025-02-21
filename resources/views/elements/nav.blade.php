@@ -6,7 +6,7 @@
             <h1>Docto Hrlibe</h1>
         </div>
         <div class="linka">
-            <a href="{{ url('home')  }}">Accueil</a>
+            <a href="{{ route('home')  }}">Accueil</a>
             <a href="{{ route('rendezvous') }}">Rendez-vous</a>
             <a href="{{ route('admin.showClient') }}"><span>Rendez-vous admin</span></a>
             <a href="{{ route('admin.schedule') }}">Prendre rendez-vous</a>

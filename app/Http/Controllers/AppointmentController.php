@@ -56,7 +56,7 @@ class AppointmentController extends Controller
         $dateTime = Carbon::parse($request->appointment_date . ' ' . $request->appointment_hour);
 
         $details = [
-            'titre' => 'Bonjour ! Voici le mail de Confiramation de rendez-vous chez Docto Hrlibe ',
+            'titre' => 'Bonjour ! Voici le mail de Confirmation de rendez-vous chez Docto Hrlibe ',
             'message' => 'Merci beaucoup de faire confiance à Docto Hrlibe pour prendre votre rendez-vous, bon courage et soignez-vous bien !'
         ];
 
